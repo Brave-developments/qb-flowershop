@@ -59,7 +59,7 @@ AddEventHandler("qb-flowerjob:client:flowerpick", function ()
                 flags = 16,
             }, {}, {}, function() -- Play When Done
                 TriggerServerEvent("qb-flowerjob:server:flowerpick")
-                ClearPedTasks(playerPed)
+                ClearPedTasks(PlayerPedId())
             end, function ()
                 QBCore.Functions.Notify(Config.Notify['cancel'], "error")
             end)
@@ -147,7 +147,7 @@ AddEventHandler("qb-flowerjob:client:sellflower", function ()
             },{}, {}, {}, function() -- Play When Done
                 TriggerEvent('animations:client:EmoteCommandStart', {"c"})
                 TriggerServerEvent("qb-flowerjob:server:sellflower")
-                ClearPedTasks(playerPed)
+                ClearPedTasks(PlayerPedId())
             end, function ()
                 QBCore.Functions.Notify(Config.Notify['cancel'], "error")
             end)
