@@ -19,7 +19,7 @@ Config.Prices = {
     ["garden"] = {
         [1] = {label = ('Flower Garden'), coords = vector4(1581.29, 2165.82, 79.34, 77.12)}
     },
-    [" flowerProcessing"] = {
+    ["flowerProcessing"] = {
         [1] = {label = (' flowerProcess'), coords = vector3(1557.56, 2162.28, 78.67)}
     },
     ["floseller"] = {
@@ -67,11 +67,11 @@ Config.ProcessName = {
 }
 
 Config.ProcessTime = {
-    ['pickflower'] = '5000',
-    ['proflowers'] = '5000',
-    ['packflowers'] = '5000',
-    ['sellflowers'] = '4000',
-    ['openshop'] = '4000',
+    ['pickflower'] = 5000,
+    ['proflowers'] = 5000,
+    ['packflowers'] = 5000,
+    ['sellflowers'] = 4000,
+    ['openshop'] = 4000,
 }
 
 Config.Notify = {
