@@ -16,6 +16,8 @@ RegisterServerEvent("qb-flowerjob:server:flowerpick")
 AddEventHandler("qb-flowerjob:server:flowerpick", function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
+        -- verify on the server; firing the event directly must not skip the bucket requirement
+        if not Player or not Player.Functions.GetItemByName('emp_bucket') then return end
         Player.Functions.AddItem("flower", 1)
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items["flower"], "add")
         TriggerClientEvent('QBCore:Notify', src, 'Picked your flowers.', "success")
@@ -39,6 +41,11 @@ RegisterServerEvent('qb-flowerjob:server:processflo', function()
     local source = source
     local Player = QBCore.Functions.GetPlayer(tonumber(source))
     local flower = 1
+    -- verify again on the server; the callback check alone can be bypassed
+    local flowerItem = Player.Functions.GetItemByName('flower')
+    if not flowerItem or not Player.Functions.GetItemByName('flower_paper') or (flowerItem.amount or 0) < 2 then
+        return
+    end
     Player.Functions.RemoveItem('flower', 2)
     Player.Functions.RemoveItem('flower_paper', 1)
     TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['flower'], "remove")
@@ -67,6 +74,10 @@ RegisterServerEvent('qb-flowerjob:server:packingflo', function()
     local source = source
     local Player = QBCore.Functions.GetPlayer(tonumber(source))
     local amount = 1
+    -- verify again on the server
+    if not Player or not Player.Functions.GetItemByName('flower_bulck') or not Player.Functions.GetItemByName('emp_flower_box') then
+        return
+    end
     Player.Functions.RemoveItem('flower_bulck', 1)
     Player.Functions.RemoveItem('emp_flower_box', 1)
     TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['flower_bulck'], "remove")
